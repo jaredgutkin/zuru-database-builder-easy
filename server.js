@@ -66,8 +66,17 @@ app.put('/updateEntry', (req, res)=>{
     .catch(error => console.error(error))
 })
 
+
+//DELETE ENTRY
 app.delete('/deleteEntry', (req, res)=>{
-    
+    db.collection('Alien Info').deleteOne(
+        {name: req.body.name}
+    )
+    .then(result => {
+        console.log("entry deleted")
+        response.json("entry deleted")
+    })
+    .catch(error => console.error(error))
 })
 
 app.listen(process.env.PORT || PORT, () =>{

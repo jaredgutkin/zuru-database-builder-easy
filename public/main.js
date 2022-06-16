@@ -11,7 +11,7 @@ async function updateEntry(){
                 features: document.getElementsByName('features')[0].value,
                 homeworld: document.getElementsByName('homeworld')[0].value,
                 image: document.getElementsByName('image')[0].value,
-                interetingFacts: document.getElementsByName('interetingFacts')[0].value,
+                interestingFact: document.getElementsByName('interestingFact')[0].value,
                 notableExamples: document.getElementsByName('notableExamples')[0].value
             })
         })

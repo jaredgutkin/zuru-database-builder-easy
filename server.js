@@ -20,9 +20,14 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.get('/', (req, res) =>{
-    let contents = db.collection('Alien Info').find().toArray()
+    db.collection('Alien Info').find().toArray()
+        .then(data => {
+            let nameList = data.map(item => item.speciesName)
+            console.log(nameList)
+            res.render('index.ejs', {info: nameList})
+        })
+        .catch(error => console.log(error))
 
-    console.log(contents)
 })
 
 app.post('/api', (req, res)=>{

@@ -31,7 +31,7 @@ app.get('/', (req, res) =>{
         .catch(error => console.log(error))
 })
 
-
+//POST NEW ENTRY
 app.post('/api', (req, res)=>{
     console.log('post heard')
     db.collection('Alien Info').insertOne(
@@ -43,8 +43,9 @@ app.post('/api', (req, res)=>{
     })
 })
 
+//UPDATE ENTRY
 app.put('/updateEntry', (req, res)=>{
-
+    console.log(req.body)
 })
 
 app.delete('/deleteEntry', (req, res)=>{

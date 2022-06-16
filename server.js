@@ -14,11 +14,13 @@ MongoClient.connect(dbConnectionStr)
         db = client.db(dbName)
     })
 
+//middleware
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
+//CRUD process
 app.get('/', (req, res) =>{
     db.collection('Alien Info').find().toArray()
         .then(data => {
@@ -27,11 +29,18 @@ app.get('/', (req, res) =>{
             res.render('index.ejs', {info: nameList})
         })
         .catch(error => console.log(error))
-
 })
 
-app.post('/api', (req, res)=>{
 
+app.post('/api', (req, res)=>{
+    console.log('post heard')
+    db.collection('Alien Info').insertOne(
+        req.body
+    )
+    .then(result =>{
+        console.log(result)
+        res.redirect('/')
+    })
 })
 
 app.put('/updateEntry', (req, res)=>{

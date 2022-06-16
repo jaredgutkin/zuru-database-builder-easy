@@ -10,6 +10,21 @@
 <body>
 <section class="row">
     <section class="column">
+        <h2>Input API data here</h2>
+        <form action="/api" method="POST">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="speciesName" name="speciesName">
+            <textarea cols="40" rows="5" type="text" placeholder="features" name="features"></textarea>
+            <input type="text" placeholder="homeworld" name="homeworld">
+            <input type="text" placeholder="image" name="image">
+            <textarea cols="40" rows="5" type="text" placeholder="interestingFact" name="interestingFact"></textarea>
+            <input type="text" placeholder="notableExamples" name="notableExamples">
+            <button type="submit">SUBMIT NEW</button>
+            <button type="button" id="updateButton">UPDATE EXISITNG</button>
+
+        </form>
+    </section>
+    <section class="column">
         <h2>Current Aliens</h2>
         <ul class="aliens">
             <% for(let i=0; i< info.length; i++) {%>

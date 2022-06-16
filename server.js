@@ -74,7 +74,7 @@ app.delete('/deleteEntry', (req, res)=>{
     )
     .then(result => {
         console.log("entry deleted")
-        response.json("entry deleted")
+        res.json("entry deleted")
     })
     .catch(error => console.error(error))
 })

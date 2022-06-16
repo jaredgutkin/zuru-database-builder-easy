@@ -35,5 +35,9 @@ async function deleteEntry() {
             })
 
         })
+        const data = await response.json()
+        location.reload()
+    } catch(err){
+        console.log(err)
     }
 }

@@ -7,7 +7,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'StarTrekAPI'
+    dbName = 'zuru-surprise-5'
 
 MongoClient.connect(dbConnectionStr)
     .then(client => {
@@ -23,9 +23,9 @@ app.use(express.json())
 
 //CRUD process
 app.get('/', (req, res) =>{
-    db.collection('Alien Info').find().toArray()
+    db.collection('miniBrandsSeries1').find().toArray()
         .then(data => {
-            let nameList = data.map(item => item.speciesName)
+            let nameList = data.map(item => `${item.itemNo} ${item.itemName}`).sort()
             console.log(nameList)
             res.render('index.ejs', {info: nameList})
         })
@@ -33,9 +33,9 @@ app.get('/', (req, res) =>{
 })
 
 //POST NEW ENTRY
-app.post('/api', (req, res)=>{
+app.post('/api/mbs1', (req, res)=>{
     console.log('post heard')
-    db.collection('Alien Info').insertOne(
+    db.collection('miniBrandsSeries1').insertOne(
         req.body
     )
     .then(result =>{
@@ -53,8 +53,8 @@ app.put('/updateEntry', (req, res)=>{
         }
     })
     console.log(req.body)
-    db.collection('Alien Info').findOneAndUpdate(
-        {name: req.body.name},
+    db.collection('miniBrandsSeries1').findOneAndUpdate(
+        {itemNo: req.body.itemNo},
         {
             $set: req.body
         }
@@ -68,16 +68,16 @@ app.put('/updateEntry', (req, res)=>{
 
 
 //DELETE ENTRY
-app.delete('/deleteEntry', (req, res)=>{
-    db.collection('Alien Info').deleteOne(
-        {name: req.body.name}
-    )
-    .then(result => {
-        console.log("entry deleted")
-        res.json("entry deleted")
-    })
-    .catch(error => console.error(error))
-})
+// app.delete('/deleteEntry', (req, res)=>{
+//     db.collection('Alien Info').deleteOne(
+//         {name: req.body.name}
+//     )
+//     .then(result => {
+//         console.log("entry deleted")
+//         res.json("entry deleted")
+//     })
+//     .catch(error => console.error(error))
+// })
 
 app.listen(process.env.PORT || PORT, () =>{
     console.log(`server is running on port ${PORT}`)

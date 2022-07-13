@@ -7,13 +7,16 @@ async function updateEntry(){
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                name: document.getElementsByName('name')[0].value,
-                speciesName: document.getElementsByName('speciesName')[0].value,
-                features: document.getElementsByName('features')[0].value,
-                homeworld: document.getElementsByName('homeworld')[0].value,
+                set: document.getElementsByName('set')[0].value,
+                setName: document.getElementsByName('setName')[0].value,
+                seriesNo: document.getElementsByName('seriesNo')[0].value,
+                item: document.getElementsByName('item')[0].value,
+                itemNo: document.getElementsByName('itemNo')[0].value,
+                itemName: document.getElementsByName('itemName')[0].value,
+                brandName: document.getElementsByName('brandName')[0].value,
                 image: document.getElementsByName('image')[0].value,
-                interestingFact: document.getElementsByName('interestingFact')[0].value,
-                notableExamples: document.getElementsByName('notableExamples')[0].value
+                rarity: document.getElementsByName('rarity')[0].value,
+                specialFeature: document.getElementsByName('specialFeature')[0].value
             })
         })
         const data = await response.json()

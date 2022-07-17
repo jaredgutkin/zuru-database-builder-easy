@@ -7,6 +7,7 @@ async function updateEntry(){
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                _id: document.getElementsByName('_id')[0].value,
                 set: document.getElementsByName('set')[0].value,
                 setName: document.getElementsByName('setName')[0].value,
                 seriesNo: document.getElementsByName('seriesNo')[0].value,

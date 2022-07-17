@@ -25,7 +25,7 @@ app.use(express.json())
 app.get('/', (req, res) =>{
     db.collection('miniBrandsSeries1').find().toArray()
         .then(data => {
-            let nameList = data.map(item => `${item.itemNo} ${item.itemName}`).sort()
+            let nameList = data.map(item => `${item._id} ${item.itemNo} ${item.itemName}`).sort()
             console.log(nameList)
             res.render('index.ejs', {info: nameList})
         })
@@ -45,7 +45,7 @@ app.post('/api/mbs1', (req, res)=>{
 })
 
 //UPDATE ENTRY
-app.put('/updateEntry', (req, res)=>{
+app.put('/api/mbs1/:itemNo', (req, res)=>{
     console.log(req.body)
     Object.keys(req.body).forEach(key => {
         if ( req.body[key] === null || req.body[key] === 'undefined' || req.body[key] === "" ){
@@ -53,15 +53,15 @@ app.put('/updateEntry', (req, res)=>{
         }
     })
     console.log(req.body)
-    db.collection('miniBrandsSeries1').findOneAndUpdate(
-        {itemNo: req.body.itemNo},
+    db.collection('miniBrandsSeries1').find(
+        {_id: req.params.id},
         {
             $set: req.body
         }
     )
     .then(result => {
         console.log(result)
-        response.json('success')
+        res.json('sucess')
     })
     .catch(error => console.error(error))
 })
